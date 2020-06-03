@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2>{{ post.title }}</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h5></h5>
+            <p>{{ post.text|linebreaksbr }}</p>
+
+            {% if post.link %}
+            <h5>Find out more:</h5>
+            {% comment %} <p>{{ post.link|urlizetrunc:30 }} </p> {% endcomment %}
+            <a href="{{post.link }}"> Here</a>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+             {% if post.image %}
+            <img src="{{ post.image.url }}"  width="75%">
+            {% endif %}
+        </div>
+
+    </div>
+
+{% endblock %}

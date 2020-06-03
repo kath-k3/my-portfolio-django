@@ -16,11 +16,23 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from . import views
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+from rest_framework.urlpatterns import format_suffix_patterns
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.index, name='home'),
     path('', include('myportfolio.urls')),
-]
+    path('portfolio', include('myportfolio.urls')),
+    path('predictor/', include('endpoints.urls')),
+    path('projects/', include('projects.urls'))
+    #path('model/', views.call_model.as_view()),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # from django.urls import path

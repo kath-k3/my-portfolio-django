@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <h2>{{ project.title }}</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h5>About the project</h5>
+            <p>{{ project.description|linebreaksbr }}</p>
+            <h5>Project category:</h5>
+            <p>{{ project.type }}</p>
+            {% if project.link %}
+            <h5>Find out more:</h5>
+            <a href="{{project.link }}"> Here</a>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <img src="{{ project.image.url }}" alt="{{ project.description }}" width="75%">
+        </div>
+
+    </div>
+
+{% endblock %}

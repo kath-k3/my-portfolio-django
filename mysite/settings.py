@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'myportfolio'
+    'rest_framework',
+    #my apps
+    'myportfolio',
+    'endpoints',
+    'projects',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +59,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+                 #'mysite/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,8 +119,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media")
+MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+STATICFILES_DIR = [
+    os.path.join(BASE_DIR, 'static'), ]
 STATIC_URL = '/static/'
