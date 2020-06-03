@@ -1,0 +1,13 @@
+*.pyc
+*~
+/.vscode
+__pycache__/
+/__pycache__/
+myvenv
+db.sqlite3
+/static
+.DS_Store
+**/migrations/*
+**pycache*
+local_settings.py
+
