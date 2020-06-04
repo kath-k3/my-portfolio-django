@@ -12,10 +12,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
+#import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -55,6 +55,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 ROOT_URLCONF = 'mysite.urls'
 
 TEMPLATES = [
@@ -82,17 +87,31 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 #
 
+# DATABASES = {
+#     'default': {
+#         'default': dj_database_url.config()
+#     }
+# }
 
-DATABASES = {
-    'default': {
-        'default': dj_database_url.config()
+
+in_heroku = False
+if 'DATABASE_URL' in os.environ:
+    in_heroku = True
+
+import dj_database_url
+if in_heroku:
+    DATABASES = {'default': dj_database_url.config()}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
 
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -155,3 +174,7 @@ LOGGING = {
         },
     },
 }
+
+#django_heroku.settings(locals())
+
+
