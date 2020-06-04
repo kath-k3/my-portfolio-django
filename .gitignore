@@ -7,7 +7,6 @@ myvenv
 db.sqlite3
 /static
 .DS_Store
-**/migrations/*
 **pycache*
 local_settings.py
 
