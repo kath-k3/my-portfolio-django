@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import dj_database_url
-#import django_heroku
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4!u8wdzu+rdfm_))!)-x=o#rm)zb7@nxc1tbrhu4=0p$#)@e2v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'rest_framework',
     #my apps
@@ -100,7 +101,7 @@ if 'DATABASE_URL' in os.environ:
 
 import dj_database_url
 if in_heroku:
-    DATABASES = {'default': dj_database_url.config()}
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600, ssl_require=True)}
 else:
     DATABASES = {
         'default': {
@@ -110,8 +111,8 @@ else:
     }
 
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -153,7 +154,7 @@ MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIR = [
     os.path.join(BASE_DIR, 'static'), ]
@@ -175,6 +176,6 @@ LOGGING = {
     },
 }
 
-#django_heroku.settings(locals())
-
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
 
