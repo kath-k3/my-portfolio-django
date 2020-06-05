@@ -9,4 +9,5 @@ db.sqlite3
 .DS_Store
 **pycache*
 local_settings.py
+*.DS_Store
 
