@@ -35,6 +35,12 @@ from django.apps import AppConfig
 #from django.conf import settings
 import os
 import pickle
+from sklearn.externals import joblib
+
+import warnings
+
+
+
 class PredictorConfig(AppConfig):
     # create path to models
     from sklearn.externals import joblib
@@ -45,10 +51,12 @@ class PredictorConfig(AppConfig):
     # these will be accessible via this class
     # with open(path, 'rb') as pickled:
     #    data = pickle.load(pickled)
-    from sklearn.externals import joblib
-    model = joblib.load(model_file)
     regressor = model['clf']
     vectorizer = model['vect']
+
+    with warnings.catch_warnings():
+      warnings.simplefilter("ignore", category=UserWarning)
+      estimator = joblib.load(model_file)
 
 from rest_framework.views import APIView
 class call_model(APIView):
