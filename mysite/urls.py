@@ -27,7 +27,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
-    path('', include('myportfolio.urls')),
+    #path('', include('myportfolio.urls')),
     path('portfolio', include('myportfolio.urls')),
     path('predictor/', include('endpoints.urls')),
     path('projects/', include('projects.urls'))
