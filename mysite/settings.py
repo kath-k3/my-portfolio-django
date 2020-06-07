@@ -19,6 +19,8 @@ import django_heroku
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_ROOT)
+print(PROJECT_ROOT, "project root")
+print(BASE_DIR, "base dir")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -27,7 +29,7 @@ BASE_DIR = os.path.dirname(PROJECT_ROOT)
 SECRET_KEY = '4!u8wdzu+rdfm_))!)-x=o#rm)zb7@nxc1tbrhu4=0p$#)@e2v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -159,7 +161,7 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-
+print(STATIC_ROOT, "static_root")
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'mysite/static'),
 )
