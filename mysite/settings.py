@@ -161,10 +161,10 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-print(STATIC_ROOT, "static_root")
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '/static'),
-)
+
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, '/static'),
+# )
 
 STATIC_URL = '/static/'
 
