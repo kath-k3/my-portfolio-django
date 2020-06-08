@@ -1,6 +1,3 @@
-/Users/kadri/Code/mysite/mysite/mysite project root
-/Users/kadri/Code/mysite/mysite base dir
-[
 {
     "model": "auth.permission",
     "pk": 1,
@@ -922,4 +919,3 @@
         "change_message": "[{\"added\": {}}]"
     }
 }
-]
