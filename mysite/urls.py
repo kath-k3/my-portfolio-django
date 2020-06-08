@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
     #path('', include('myportfolio.urls')),
-    path('portfolio', include('myportfolio.urls')),
+    path('myportfolio/', include('myportfolio.urls')),
     path('predictor/', include('endpoints.urls')),
     path('projects/', include('projects.urls'))
     #path('model/', views.call_model.as_view()),
