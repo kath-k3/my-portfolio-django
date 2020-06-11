@@ -32,7 +32,8 @@ urlpatterns = [
     path('predictor/', include('endpoints.urls')),
     path('projects/', include('projects.urls'))
     #path('model/', views.call_model.as_view()),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) +\
+              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 # from django.urls import path

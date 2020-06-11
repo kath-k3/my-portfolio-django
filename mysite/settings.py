@@ -175,7 +175,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, '/static'),
 )
 
-#STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 #STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
 #MEDIA_URL = STATIC_URL + 'media/'
 
