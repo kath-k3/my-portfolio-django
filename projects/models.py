@@ -6,7 +6,7 @@ class Project(models.Model):
     description = models.TextField()
     type = models.CharField(max_length=20)
     link = models.URLField(blank=True)
-    image = models.ImageField(upload_to='img/', null=True, blank=True)
+    image = models.ImageField(upload_to='static.kadrisite/', null=True, blank=True)
 
     # def getImage(self):
     #     if not self.image:

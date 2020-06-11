@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'myportfolio',
     'endpoints',
     'projects',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +63,16 @@ MIDDLEWARE = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' # manages media files
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' # manages static files
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', '')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', '')
+AWS_STORAGE_BUCKET_NAME = 'static.kadrisite'
+AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
+AWS_DEFAULT_ACL = None
+#AWS_LOCATION = 'static'
+AWS_QUERYSTRING_AUTH = False
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -153,17 +163,21 @@ PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media")
-MEDIA_URL = '/media/'
+#MEDIA_URL = '/media/'
+MEDIA_URL = 'http://{!s}.s3.amazonaws.com/media/'.format(AWS_STORAGE_BUCKET_NAME)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, '/static'),
-# )
-STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, '/static'),
+)
+
+#STATIC_URL = '/static/'
+#STATIC_URL = 'https://' + AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com/'
+#MEDIA_URL = STATIC_URL + 'media/'
 
 # LOGGING = {
 #     'version': 1,
