@@ -8,6 +8,9 @@ class Project(models.Model):
     link = models.URLField(blank=True)
     image = models.ImageField(upload_to='static.kadrisite/', null=True, blank=True)
 
+    class Meta:
+        ordering = ["title"]
+
     # def getImage(self):
     #     if not self.image:
     #         # depending on your template
