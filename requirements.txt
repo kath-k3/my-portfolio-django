@@ -18,7 +18,7 @@ distlib==0.3.0
 dj-database-url==0.5.0
 Django==2.1.4
 django-ordered-model==3.1.1
-djangorestframework==3.11.0
+djangorestframework==3.11.2
 django-heroku
 django-storages
 entrypoints==0.3
